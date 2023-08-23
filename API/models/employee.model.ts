@@ -101,6 +101,7 @@ employeeSchema.pre<Query<IEmployee, IEmployee>>(/^find/, function (next) {
   next();
 });
 employeeSchema.pre<any>('findOneAndUpdate', async function (next) {
+  if (!this.getUpdate().password) return next();
   this.getUpdate().password = await bcryptjs.hash(
     this.getUpdate().password,
     12

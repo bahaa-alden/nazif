@@ -123,13 +123,6 @@ export const EditForm: FC<EditFormProps> = ({}) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <PasswordInput
-                    control={control}
-                    name="password"
-                    InputProps={{ autoComplete: "off" }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
                   <WarehouseAutocomplete
                     control={control}
                     name="store"
@@ -138,6 +131,13 @@ export const EditForm: FC<EditFormProps> = ({}) => {
                 </Grid>
                 <Grid item xs={12}>
                   <EmailInput control={control} name="email" />
+                </Grid>
+                <Grid item xs={12}>
+                  <PasswordInput
+                    control={control}
+                    name="password"
+                    InputProps={{ autoComplete: "off" }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField

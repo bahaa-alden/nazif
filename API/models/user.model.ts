@@ -106,6 +106,15 @@ userSchema.pre<Query<IUser, IUser>>(/^find/, function (next) {
 });
 userSchema.pre<any>('findOneAndUpdate', async function (next) {
   if (!this.getUpdate().password) return next();
+  const user: any = await this.model.findById(this.getQuery()._id);
+  if (user.role === 'user')
+    return next(
+      new AppError(
+        STATUS_CODE.FORBIDDEN,
+        [],
+        'غير مسموح بتعديل كلمة مرور مستخدم'
+      )
+    );
   this.getUpdate().password = await bcryptjs.hash(
     this.getUpdate().password,
     12
